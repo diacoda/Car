@@ -1,0 +1,1 @@
+A project from a template with a goal
