@@ -1,0 +1,27 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - apt-get -y update
+      - apt-get -y install zip
+      - apt-get -y install git
+  pre_build:
+    commands:
+      - echo Restore started on `date`
+      - dotnet restore src/CarFunction/CarFunction.csproj
+      - dotnet restore test/CarFunction.Tests/CarFunction.Tests.csproj
+      - dotnet test test/CarFunction.Tests/CarFunction.Tests.csproj
+  build:
+    commands:
+      - echo Build started on `date`
+      - cd src/CarFunction
+      - dotnet lambda package -pl . -c Release -f netcoreapp2.0 -o ../../CarFunction-deploy.zip
+      - cd ../..
+  post-build:
+    commands:
+      - echo Post build started on `date`
+      - aws s3 cp CarFunction-deploy.zip s3://204891-lambda-deploy/CarFunction-deploy.zip
+artifacts:
+  files:
+    - CarFunction-deploy.zip
+    - src/CarFunction/serverless.json
