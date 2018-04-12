@@ -27,6 +27,10 @@
                   "Method": "GET"
             }
         }
+      },
+      "Tags" : {
+          "tr:application-asset-insight-id" : "204891",
+          "tr:resource-owner" : "dan.diaconescu"
       }
     }
 }
