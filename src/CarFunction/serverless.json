@@ -1,0 +1,32 @@
+{
+    "AWSTemplateFormatVersion" : "2010-09-09",
+    "Transform" : "AWS::Serverless-2016-10-31",
+
+   "204891-CarLambda" : {
+    "Type" : "AWS::Serverless::Function",
+    "Properties": {
+        "Handler": "CarFunction::CarFunction.Functions::FunctionHandler",
+        "Runtime": "dotnetcore2.0",
+        "CodeUri": ".",
+        "Description": "Function to get a list of carss",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": "arn:aws::role/204891-lambdabasic" },
+      "Events": {
+          "Api1": {
+              "Type": "Api",
+              "Properties": {
+                  "Path": "/{o+}",
+                  "Method": "ANY"
+              }
+          },
+          "Api2": {
+              "Type": "Api",
+              "Properties": {
+                  "Path": "/Cars",
+                  "Method": "GET"
+            }
+        }
+      }
+    }
+}
