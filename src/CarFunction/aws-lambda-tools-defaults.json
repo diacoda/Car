@@ -15,7 +15,7 @@
   "s3-bucket" : "204891-lambda-deploy",
   "s3-prefix" : "output/",
   "template" : "serverless.json",
-  "stack-name" : "204891-CarLambda-sn",
+  "stack-name" : "CarLambda-204891",
   "stack-wait"    : true,
   "function-memory-size" : 256,
   "function-timeout" : 30,
