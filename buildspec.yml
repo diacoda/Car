@@ -15,11 +15,7 @@ phases:
     commands:
       - echo Build started on `date`
       - cd src/CarFunction
-<<<<<<< HEAD
       - dotnet lambda package-ci --output-template output-serverless.json
-=======
-      - dotnet lambda package-ci -pl . -c Release -f netcoreapp2.0 -o ../../CarFunction-deploy.zip
->>>>>>> 8e55ba0b43a169806d5d41c7ba4168f27e58e83b
       - cd ../..
   post_build:
     commands:
