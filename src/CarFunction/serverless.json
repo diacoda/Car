@@ -2,36 +2,38 @@
     "AWSTemplateFormatVersion" : "2010-09-09",
     "Transform" : "AWS::Serverless-2016-10-31",
 
-   "204891-CarLambda" : {
-        "Type" : "AWS::Serverless::Function",
-        "Properties": {
-            "Handler": "CarFunction::CarFunction.Functions::FunctionHandler",
-            "Runtime": "dotnetcore2.0",
-            "CodeUri": "s3://204891-lambda-deploy/CarFunction-deploy.zip",
-            "Description": "Function to get a list of cars",
-            "MemorySize": 256,
-            "Timeout": 30,
-            "Role": "arn:aws::role/204891-lambdabasic" 
-        },
-        "Events": {
-            "Api1": {
-                "Type": "Api",
-                "Properties": {
-                    "Path": "/{o+}",
-                    "Method": "ANY"
+    "Resources" : {
+        "CarLambda-204891" : {
+            "Type" : "AWS::Serverless::Function",
+            "Properties": {
+                "Handler": "CarFunction::CarFunction.Functions::FunctionHandler",
+                "Runtime": "dotnetcore2.0",
+                "CodeUri": "s3://204891-lambda-deploy/CarFunction-deploy.zip",
+                "Description": "Function to get a list of cars",
+                "MemorySize": 256,
+                "Timeout": 30,
+                "Role": "arn:aws::role/204891-lambdabasic" 
+            },
+            "Events": {
+                "Api1": {
+                    "Type": "Api",
+                    "Properties": {
+                        "Path": "/{o+}",
+                        "Method": "ANY"
+                    }
+                },
+                "Api2": {
+                    "Type": "Api",
+                    "Properties": {
+                        "Path": "/Cars",
+                        "Method": "GET"
+                    }
                 }
             },
-            "Api2": {
-                "Type": "Api",
-                "Properties": {
-                    "Path": "/Cars",
-                    "Method": "GET"
-                }
+            "Tags" : {
+                "tr:application-asset-insight-id" : "204891",
+                "tr:resource-owner" : "dan.diaconescu"
             }
-        },
-        "Tags" : {
-            "tr:application-asset-insight-id" : "204891",
-            "tr:resource-owner" : "dan.diaconescu"
         }
     }
 }
