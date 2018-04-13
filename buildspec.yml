@@ -15,13 +15,12 @@ phases:
     commands:
       - echo Build started on `date`
       - cd src/CarFunction
-      - dotnet lambda package -pl . -c Release -f netcoreapp2.0 -o ../../CarFunction-deploy.zip
+      - dotnet lambda package-ci --output-template output-serverless.json
       - cd ../..
   post_build:
     commands:
-      - echo Post build started on `date`
-      - aws s3 cp CarFunction-deploy.zip s3://204891-lambda-deploy/CarFunction-deploy.zip
+      - echo Post build started on 'date'
+      - cp src/CarFunction/output-serverless.json
 artifacts:
   files:
-    - CarFunction-deploy.zip
-    - src/CarFunction/serverless.json
+    - output-serverless.json
