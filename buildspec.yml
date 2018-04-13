@@ -20,7 +20,7 @@ phases:
   post_build:
     commands:
       - echo Post build started on 'date'
-      - cp src/CarFunction/output-serverless.json
+      - cp src/CarFunction/output-serverless.json ../..
 artifacts:
   files:
     - output-serverless.json
