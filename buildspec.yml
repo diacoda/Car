@@ -17,7 +17,7 @@ phases:
       - cd src/CarFunction
       - dotnet lambda package -pl . -c Release -f netcoreapp2.0 -o ../../CarFunction-deploy.zip
       - cd ../..
-  post-build:
+  post_build:
     commands:
       - echo Post build started on `date`
       - aws s3 cp CarFunction-deploy.zip s3://204891-lambda-deploy/CarFunction-deploy.zip
