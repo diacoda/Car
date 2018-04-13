@@ -15,7 +15,7 @@ phases:
     commands:
       - echo Build started on `date`
       - cd src/CarFunction
-      - dotnet lambda package -pl . -c Release -f netcoreapp2.0 -o ../../CarFunction-deploy.zip
+      - dotnet lambda package-ci -pl . -c Release -f netcoreapp2.0 -o ../../CarFunction-deploy.zip
       - cd ../..
   post_build:
     commands:
