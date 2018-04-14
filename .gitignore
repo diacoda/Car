@@ -3,6 +3,7 @@
 
 ########## igonre zip
 *.zip
+*.template
 
 # User-specific files
 *.suo
