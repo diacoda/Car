@@ -6,13 +6,13 @@
         "CarLambda" : {
             "Type" : "AWS::Serverless::Function",
             "Properties": {
-                "Handler": "CarFunction::CarFunction.Functions::FunctionHandler",
+                "Handler": "CarFunction::CarFunction.Functions::Get",
                 "Runtime": "dotnetcore2.0",
                 "CodeUri": "",
                 "Description": "Function to get a list of cars",
                 "MemorySize": 256,
                 "Timeout": 30,
-                "Role": "arn:aws::role/204891-lambdabasic" 
+                "Role": "arn:aws:iam:::role/204891-lambdabasic" 
             },
             "Events": {
                 "Api1": {
