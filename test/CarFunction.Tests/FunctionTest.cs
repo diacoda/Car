@@ -9,6 +9,9 @@ using Amazon.Lambda.TestUtilities;
 using Amazon.Lambda.APIGatewayEvents;
 
 using CarFunction;
+using CarFunction.Model;
+
+using Newtonsoft.Json;
 
 namespace CarFunction.Tests
 {
@@ -23,12 +26,14 @@ namespace CarFunction.Tests
 
             Functions functions = new Functions();
 
+            var car = new Model.Car() {Model = "Passat", Mileage = 150000, Make = "VW", Year = 1999};
 
             request = new APIGatewayProxyRequest();
             context = new TestLambdaContext();
             response = functions.Get(request, context);
             Assert.Equal(200, response.StatusCode);
-            Assert.Equal("Hello AWS Serverless", response.Body);
+            string result = JsonConvert.SerializeObject(car);
+            Assert.Equal(result, response.Body);
         }
     }
 }
