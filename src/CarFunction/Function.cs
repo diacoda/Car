@@ -16,6 +16,17 @@ namespace CarFunction
 {
     public class Functions
     {
+        public void PrintParams(string parameterType, IDictionary<string, string> parameters)
+        {
+            if(parameters!=null)
+            {
+                foreach(string key in parameters.Keys)
+                {
+                    LambdaLogger.Log(parameterType + " key: " + key + " , value: " + parameters[key] + "\n");
+                }
+            }
+            return;
+        }
         
         /// <summary>
         /// A simple function that takes a string and does a ToUpper
@@ -25,10 +36,16 @@ namespace CarFunction
         /// <returns></returns>
         public APIGatewayProxyResponse Get(APIGatewayProxyRequest request, ILambdaContext context)
         {
+
             context.Logger.LogLine("Get Request\n");
+            PrintParams("path", request.PathParameters);
+            PrintParams("headers", request.Headers);
+            PrintParams("query string", request.QueryStringParameters);
+            PrintParams("stage variables", request.StageVariables);
+
+            context.Logger.LogLine("path :" + request.Path + ", httpMethod: " + request.HttpMethod + ", resource: " + request.Resource);
 
             var car = new Model.Car() {Model = "Passat", Mileage = 150000, Make = "VW", Year = 1999};
-
             var response = new APIGatewayProxyResponse
             {
                 StatusCode = (int)HttpStatusCode.OK,
